@@ -1,0 +1,79 @@
+{% extends "index.html" %}
+{% block content %}
+<article ng-controller="Muestra">
+    <div class="panel-heading" style="height: 65px;">
+        <h2 class="text-info col-md-3 col-xs-10 navbar-btn"></h2>
+
+        <div class="col-md-3 pull-right navbar-btn">
+            <button class="btn btn-default col-md-5 col-md-offset-1" data-toggle="modal" data-target="#formularioBuscar" ng-click="search()">&ThinSpace;<span class="glyphicon glyphicon-search"></span></button>
+            <button class="btn btn-success col-md-5 col-md-offset-1" data-toggle="modal" data-target="#formularioCapital" ng-click="clearField()">&ThinSpace;<span class="glyphicon glyphicon-plus"></span></button>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead bgcolor= "#00a623" style="color:#ffffff";>
+                <tr>
+                    <th class="text-center ">Cedula</th>
+                    <th class="text-center">Descripcion</th>
+                    <th class="text-center">Año</th>
+                </tr>
+            </thead>
+            <tbody>
+             {% raw %}
+             <tr ng-repeat="data in dataSearch">
+                    <td class="col-md-2">{{data.res_cedula}}</td>
+                    <td class="col-md-3">{{data.mue_dscrpcion}}</td>
+                    <td class="col-md-3">{{data.mue_anio}}</td>
+                    <td class="col-md-3">
+                        <button class="btn btn-danger col-md-3" ng-click="deleteMuestra(data)"><span class="glyphicon glyphicon-trash"></span></button>
+                        <button class="btn btn-primary col-md-3" ng-click="showFormUpdate(data)" data-toggle="modal" data-target="#formularioCapital"><span class="glyphicon glyphicon-edit"></span></button>
+                    </td>
+             </tr>
+             {% endraw %}
+            </tbody>
+        </table>
+    </div>
+    <div class="modal fade" tabindex="-1" role="dialog" id="formularioCapital">
+        <div class="modal-dialog">
+            <div class="modal-content" ng-init="updateFields=true">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title"><span class="glyphicon glyphicon-edit"></span>&ThinSpace;Muestra</h4>
+                </div>
+                <div class="modal-body">
+                    {% raw %}
+                    <form class="form-horizontal row">
+                        <div class="form-group col-md-6" ng-controller="Responsable">
+                            <label  class="col-sm-2 control-label col-md-4"><strong class="text-info">Responsable:</strong></label>
+                            <div class="col-sm-10 col-md-8 col" ng-init="search()" >
+                                <select class="form-control col-md-3" ng-model="dataMuestra.cedula">
+                                    <option ng-repeat="dataResponsable in dataSearch" ng-value="{{dataResponsable.res_cedula}}">{{dataResponsable.id}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="col-sm-4 control-label col-md-4"><strong class="text-info">Descripcion:</strong></label>
+                            <div class="col-sm-8 col-md-8">
+                                <input type="text" class="form-control"  placeholder="descripcion" ng-model="dataMuestra.descripcion">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="col-sm-4 control-label col-md-4"><strong class="text-info">Año:</strong></label>
+                            <div class="col-sm-8 col-md-8">
+                                <input type="text" class="form-control"  placeholder="año" ng-model="dataMuestra.anio">
+                            </div>
+                        </div>
+
+                    </form>
+                    {% endraw %}
+                </div>
+                <div class="modal-footer" >
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success" ng-click="createMuestra()" data-dismiss="modal" ng-show="!updateFields">Guardar</button>
+                    <button type="button" class="btn btn-success" ng-click="update()" data-dismiss="modal" ng-show="updateFields">Modificar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+{% endblock %}

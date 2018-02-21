@@ -18,6 +18,7 @@ angular.module('HV').controller('Machine', ['$scope','Crud',function (controller
     };
     controller.clearField = function(){
         controller.data = {description : "", references : "",potencyN:""};
+        controller.updateFields = false;
     };
     controller.showFormUpdate = function(data){
         controller.data.description = data.tip_dscrpcion;

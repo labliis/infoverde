@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap4.min.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styleLogin.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mdb.min.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='font-awesome-4.7.0/css/font-awesome.min.css') }}"/>
+    <title> {% block title %} {% endblock %}</title>
+</head>
+<body>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+        {% endif %}
+    {% endwith%}
+
+    {% block content %}
+    {% endblock %}
+    <script src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+    <!-- Bootstrap tooltips -->
+    <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap4.min.js') }}"></script>
+    <!-- MDB core JavaScript -->
+    <script src="{{ url_for('static', filename='js/mdb.min.js') }}"></script>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <p class="copyright text-muted">&copy; InfoVerde</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

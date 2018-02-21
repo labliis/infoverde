@@ -2,20 +2,28 @@
 <html lang="en" ng-app="HV">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>ADMINISTRADOR-INFO-VERDE</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/RecursoAzul.png') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}"/>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mdb.min.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mdb.css') }}"/>
     <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/angular.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
     <script src="{{ url_for('static', filename='js/services/crud.js') }}"></script>
     <script src="{{ url_for('static', filename='js/controllers/machine.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/controllers/agent.js') }}"></script>
     <script src="{{ url_for('static', filename='js/controllers/office.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/controllers/postion.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/controllers/responsable.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/controllers/muestra.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/controllers/factorEmision.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/controllers/detailSample.js') }}"></script>
+
 </head>
 <body>
-    <nav class="navbar navbar-default" ng-init="consultarSesion()">
+   <nav class="navbar navbar-default" ng-init="consultarSesion()">
         <div class="container-fluid" ng-init="consultarArticulosCasiAgotados()">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -24,7 +32,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#"></a>
+                <div class="col-md-4">
+                    <span>
+                        <img style="display: inline-block; height:56px; width:42px;  margin-top: 0px;
+                             margin-left: 612px"
+                             src="static/images/RecursoAzul.png">
+                    </span>
+                </div>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
@@ -42,10 +56,20 @@
     </nav>
     <aside>
         <article class="col-md-2" id="menu">
-            <a ng-href="/machine" class="list-group-item"><span class="glyphicon glyphicon-hdd"></span>&ThinSpace;Maquinas</a>
-            <a ng-href="/office" class="list-group-item"><span class="glyphicon glyphicon-blackboard"></span>&ThinSpace;Oficina</a>
-            <a ng-href="/agent" class="list-group-item"><span class="glyphicon glyphicon-user"></span>&ThinSpace;Representante</a>
-            <a ng-href="/sampleDetail" class="list-group-item"><span class="glyphicon glyphicon-link"></span>&ThinSpace;Detalle Muestra</a>
+            <a ng-href="/maquina" class="list-group-item"><span class="glyphicon glyphicon-hdd"></span>&ThinSpace;Maquinas</a>
+            <a ng-href="/oficina" class="list-group-item"><span class="glyphicon glyphicon-blackboard"></span>&ThinSpace;Oficina</a>
+            <a ng-href="/detalleMuestra" class="list-group-item"><span class="glyphicon glyphicon-link"></span>&ThinSpace;Detalle Muestra</a>
+            <a ng-href="/cargo" class="list-group-item"><span class="glyphicon glyphicon-send"></span>&ThinSpace;Cargo</a>
+            <a ng-href="/responsable" class="list-group-item"><span class="glyphicon glyphicon-user"></span>&ThinSpace;Responsable</a>
+            <a ng-href="/muestra" class="list-group-item"><span class="glyphicon glyphicon-th-list"></span>&ThinSpace;Muestra</a>
+            <a ng-href="/factorEmision" class="list-group-item"><span class="glyphicon glyphicon-globe"></span>&ThinSpace;Factor Emision</a>
+            <div class="col-md-4">
+                    <span>
+                        <img style="display: inline-block; height:270px; width:193px;  margin-top: 12px;
+                             margin-left: 2px"
+                             src="static/images/RecursoBlanco.png">
+                    </span>
+            </div>
         </article>
         <section class="col-md-10 col-md-offset-2">
             {% block content %}{% endblock %}

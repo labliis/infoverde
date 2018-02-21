@@ -5,24 +5,31 @@
         <h2 class="text-info col-md-3 col-xs-10 navbar-btn"></h2>
 
         <div class="col-md-3 pull-right navbar-btn">
-            <button class="btn btn-default col-md-5 col-md-offset-1" data-toggle="modal" data-target="#formularioBuscar" ng-click="search()">&ThinSpace;<span class="glyphicon glyphicon-search"></span></button>
-            <button class="btn btn-success col-md-5 col-md-offset-1" data-toggle="modal" data-target="#formularioCapital" ng-click="clearField()">&ThinSpace;<span class="glyphicon glyphicon-plus"></span></button>
+            <button class="btn btn-primary col-md-3 col-md-offset-1" data-toggle="modal" data-target="#formularioBuscar" ng-click="automaticUpdate()" title="sincronizar horarios">&ThinSpace;<span class="glyphicon glyphicon-refresh" ></span></button>
+            <button class="btn btn-default col-md-3 col-md-offset-1" data-toggle="modal" data-target="#formularioBuscar" ng-click="search()" title="consultar">&ThinSpace;<span class="glyphicon glyphicon-search"></span></button>
+            <button class="btn btn-success col-md-3 col-md-offset-1" data-toggle="modal" data-target="#formularioCapital" ng-click="clearField()" title="agregar">&ThinSpace;<span class="glyphicon glyphicon-plus"></span></button>
         </div>
     </div>
     <div class="table-responsive">
         <table class="table table-bordered table-hover">
-            <thead class="bg-primary">
+            <thead bgcolor= "#00a623" style="color:#ffffff";>
                 <tr>
-                    <th class="text-center">Descripcion</th>
+                    <th class="text-center">Sala</th>
+                    <th class="text-center">Tiempo Uso</th>
+                    <th class="text-center">Tiempo Fantasma</th>
+                    <th class="text-center">Año</th>
                 </tr>
             </thead>
             <tbody>
              {% raw %}
-             <tr ng-repeat="data in dataSearch" class="row2">
-                <td class="col-md-3">{{data.ofi_dscrpcion}}</td>
-                    <td class="col-md-3">
-                        <button class="btn btn-danger col-md-2" ng-click="deleteOffice(data)"><span class="glyphicon glyphicon-trash"></span></button>
-                        <button class="btn btn-primary col-md-2" ng-click="showFormUpdate(data)" data-toggle="modal" data-target="#formularioCapital"><span class="glyphicon glyphicon-edit"></span></button>
+             <tr ng-repeat="data in dataSearch">
+                <td class="col-md-2">{{data.ofi_dscrpcion}}</td>
+                 <td class="col-md-2">{{data.ofi_tmpo_uso}}</td>
+                 <td class="col-md-2">{{data.ofi_tmpo_fntsma}}</td>
+                 <td class="col-md-2">{{data.ofi_anio}}</td>
+                    <td class="col-md-2">
+                        <button class="btn btn-danger col-md-4 col-md-offset-1" ng-click="deleteOffice(data)"><span class="glyphicon glyphicon-trash"></span></button>
+                        <button class="btn btn-primary col-md-4 col-md-offset-1" ng-click="showFormUpdate(data)" data-toggle="modal" data-target="#formularioCapital"><span class="glyphicon glyphicon-edit"></span></button>
                     </td>
              </tr>
              {% endraw %}
@@ -40,18 +47,30 @@
                     {% raw %}
                     <form class="form-horizontal row">
                         <div class="form-group col-md-12">
-                            <label class="col-sm-6 control-label col-md-3"><strong class="text-info">Descripcion:</strong></label>
+                            <label class="col-sm-6 control-label col-md-3"><strong class="text-info">Sala:</strong></label>
                             <div class="col-sm-6 col-md-9">
-                                <input type="text" class="form-control" ng-model="dataOffice.description" placeholder="Descripcion">
+                                <input type="text" class="form-control" ng-model="dataOffice.description" placeholder="Solo un Caracter">
+                            </div>
+                            <label class="col-sm-6 control-label col-md-3"><strong class="text-info">Tiempo Uso:</strong></label>
+                            <div class="col-sm-6 col-md-9">
+                                <input type="text" class="form-control" ng-model="dataOffice.reservaAnual" placeholder="Anual">
+                            </div>
+                            <label class="col-sm-6 control-label col-md-3"><strong class="text-info">Tiempo Fantasma:</strong></label>
+                            <div class="col-sm-6 col-md-9">
+                                <input type="text" class="form-control" ng-model="dataOffice.reservaAnual" placeholder="Anual">
+                            </div>
+                             <label class="col-sm-6 control-label col-md-3"><strong class="text-info">Año:</strong></label>
+                            <div class="col-sm-6 col-md-9">
+                                <input type="text" class="form-control" ng-model="dataOffice.anio" placeholder="Año">
                             </div>
                         </div>
                     </form>
                 {% endraw %}
                 </div>
-                <div class="modal-footer" ng-init="updateFields=false">
+                <div class="modal-footer" ng-init="updateFields=true">
                     <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" ng-click="createOffice()" data-dismiss="modal" ng-show="!updateFields">Guardar</button>
-                    <button type="button" class="btn btn-primary" ng-click="update()" data-dismiss="modal" ng-show="updateFields">Modificar</button>
+                    <button type="button" class="btn btn-success" ng-click="createOffice()" data-dismiss="modal" ng-show="!updateFields">Guardar</button>
+                    <button type="button" class="btn btn-success" ng-click="update()" data-dismiss="modal" ng-show="updateFields">Modificar</button>
                 </div>
             </div>
         </div>

@@ -11,22 +11,22 @@
     </div>
     <div class="table-responsive">
         <table class="table table-bordered table-hover">
-            <thead class="bg-primary">
+            <thead bgcolor= "#00a623" style="color:#ffffff";>
                 <tr>
-                    <th class="text-center">Descripción</th>
+                    <th class="text-center ">Descripción</th>
                     <th class="text-center">Referencia</th>
                     <th class="text-center">Potencia Nominal</th>
                 </tr>
             </thead>
             <tbody>
              {% raw %}
-             <tr ng-repeat="data in dataSearch" class="row2">
+             <tr ng-repeat="data in dataSearch">
                     <td class="col-md-3">{{data.tip_dscrpcion}}</td>
                     <td class="col-md-3">{{data.tip_referencia}}</td>
                     <td class="col-md-3">{{data.tip_Ptncia_Nmnal}}</td>
                     <td class="col-md-3">
-                        <button class="btn btn-danger col-md-2" ng-click="deleteMachine(data)"><span class="glyphicon glyphicon-trash"></span></button>
-                        <button class="btn btn-primary col-md-2" ng-click="showFormUpdate(data)" data-toggle="modal" data-target="#formularioCapital"><span class="glyphicon glyphicon-edit"></span></button>
+                        <button class="btn btn-danger col-md-4 col-md-offset-1" ng-click="deleteMachine(data)"><span class="glyphicon glyphicon-trash"></span></button>
+                        <button class="btn btn-primary col-md-4 col-md-offset-1" ng-click="showFormUpdate(data)" data-toggle="modal" data-target="#formularioCapital"><span class="glyphicon glyphicon-edit"></span></button>
                     </td>
              </tr>
              {% endraw %}
@@ -62,10 +62,10 @@
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer" ng-init="updateFields=false">
+                <div class="modal-footer" ng-init="updateFields=true">
                     <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" ng-click="create()" data-dismiss="modal" ng-show="!updateFields">Guardar</button>
-                    <button type="button" class="btn btn-primary" ng-click="update()" data-dismiss="modal" ng-show="updateFields">Modificar</button>
+                    <button type="button" class="btn btn-success" ng-click="create()" data-dismiss="modal" ng-show="!updateFields">Guardar</button>
+                    <button type="button" class="btn btn-success" ng-click="update()" data-dismiss="modal" ng-show="updateFields">Modificar</button>
                 </div>
             </div>
         </div>
